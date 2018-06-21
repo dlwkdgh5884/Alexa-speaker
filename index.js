@@ -3,7 +3,7 @@ exports.handler = function (event, context) {
     try {
         console.log("event.session.application.applicationId=" + event.session.application.applicationId);
         
-        if (event.session.application.applicationId !== "amzn1.ask.skill.d8ad69ed-f363-4b8f-9de2-529d93ddcfab") {
+        if (event.session.application.applicationId !== "amzn1.ask.skill.42098a7c-5545-472d-92da-2033495ff91d") {
              context.fail("Invalid Application ID");
         }
         if (event.session.new) {
@@ -73,127 +73,224 @@ function api(city, state, cb) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The Seoul is the " + wt.current.pollution.aqius;
-            
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+                var speechOutput = "Seoul---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Jejudo":
-            var jjcity = intentRequest.intent.slots.jj.value;
+            var jjcity = intentRequest.intent.slots.jjcities.value;
             api(jjcity, 'Jeju-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + jjcity + "is " + wt.current.pollution.aqius;
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = jjcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Chungcheongbukdo":
-            var cbcity = intentRequest.intent.slots.cb.value;
+            var cbcity = intentRequest.intent.slots.cbcities.value;
             api(cbcity, 'Chungcheongbuk-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + cbcity  + " is " + wt.current.pollution.aqius;
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = cbcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Chungcheongnamdo":
-            var cncity = intentRequest.intent.slots.cn.value;
+            var cncity = intentRequest.intent.slots.cncities.value;
             api(cncity, 'Chungcheongnam-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + cncity  + " is " + wt.current.pollution.aqius;
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = cncity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
         
         case "Gangwondo":
-            var gwcity = intentRequest.intent.slots.gw.value;
+            var gwcity = intentRequest.intent.slots.gwcities.value;
             api(gwcity, 'Gangwon-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + gwcity  + " is " + wt.current.pollution.aqius;
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = gwcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Gyeonggido":
-            var ggcity = intentRequest.intent.slots.gg.value;
+            var ggcity = intentRequest.intent.slots.ggcities.value;
             api(ggcity, 'Gyeonggi-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + ggcity  + " is " + wt.current.pollution.aqius;
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = ggcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
+            
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
         
         case "Gyeongsangbukdo":
-            var gbcity = intentRequest.intent.slots.gb.value;
+            var gbcity = intentRequest.intent.slots.gbcities.value;
             api(gbcity, 'Gyeongsangbuk-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + gbcity  + " is " + wt.current.pollution.aqius;
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = gbcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Gyeongsangnamdo":
-            var gncity = intentRequest.intent.slots.gn.value;
+            var gncity = intentRequest.intent.slots.gncities.value;
             api(gncity, 'Gyeongsangnam-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + gncity  + " is " + wt.current.pollution.aqius;
+                
+                 var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = gncity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Jeollabukdo":
-            var jbcity = intentRequest.intent.slots.jb.value;
+            var jbcity = intentRequest.intent.slots.jbcities.value;
             api(jbcity, 'Jeollabuk-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + jbcity  + " is " + wt.current.pollution.aqius;
+                
+                 var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = jbcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Jeollanamdo":
-            var jncity = intentRequest.intent.slots.jn.value;
+            var jncity = intentRequest.intent.slots.jncities.value;
             api(jncity, 'Jeollanam-do', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + jncity  + " is " + wt.current.pollution.aqius;
+                
+                var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = jncity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
             break;
             
         case "Sejong":
-            var sjcity = intentRequest.intent.slots.sj.value;
+            var sjcity = intentRequest.intent.slots.sjcities.value;
             api(sjcity, 'Sejong', function(wt) {
                 
                 var cardTitle = 'Weather Condition';
                 var shouldEndSession = true;
-                var speechOutput = "The " + sjcity  + " is " + wt.current.pollution.aqius;
+                 var status;
+                if (wt.current.pollution.aqius < 50)
+                    status = "Good";
+                else if(wt.current.pollution.aqius < 100)
+                    status = "bo-tong"
+                else    
+                    status = "bad"
+                
+               var speechOutput = sjcity + "---on-doh--" + wt.current.weather.tp + "---gu-rigo---mise-meon-ji--" + wt.current.pollution.aqius + "-- " + status;
             
                 this.cb({}, buildSpeechletResponse(cardTitle, speechOutput, speechOutput, shouldEndSession));
             }.bind(this));
@@ -213,9 +310,9 @@ function api(city, state, cb) {
 }function getWelcomeResponse(callback) {
     var sessionAttributes = {};
     var cardTitle = "Welcome";
-    var speechOutput = "won-ha-neun--do-si--iireum-eul-mal-hae-ju-se-yo.";
+    var speechOutput = "won-ha-neun---do-si---e-luem--mal-hae-ju-se-yo.";
     var repromptText = "Here are some things you can say: " +
-        "Seoul " +
+        "Seoul or" +
         "Jeju ";
     var shouldEndSession = false;
     callback(sessionAttributes, buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
